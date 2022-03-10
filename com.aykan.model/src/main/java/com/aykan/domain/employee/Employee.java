@@ -4,6 +4,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e"),
+        @NamedQuery(name = "Employee.findFullById", query = "select e from Employee e left outer join fetch e.job left outer join fetch e.department where e.employeeId =:employeeId"),
+        @NamedQuery(name = "Employee.count", query = "select count(e) from Employee e")
+})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

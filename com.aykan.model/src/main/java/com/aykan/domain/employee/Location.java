@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Location.findAll", query = "select l from Location l"),
+        @NamedQuery(name = "Location.findDepartmentById", query = "select l from Location l left outer join fetch l.departments where l.locationId =: locationId")
+})
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
